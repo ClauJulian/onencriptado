@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Encriptado</title>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+
+    <header>
+        <nav><img src="./img/Logo.png"></nav>
+    </header>
+    <main>
+        <section class="panel__ingreso">
+            <textarea class="panel__ingreso__textarea" id="ingreso__textarea" placeholder="Ingrese el texto aquí"></textarea>
+            <div class="panel__ingreso__botonera">
+                <p>Sólo letras en minúscula y sin acentos</p>
+                <button onclick="encriptarTexto(textoAEncriptar)">Encriptar</button>
+                <button onclick="">Desencriptar</button>
+            </div>
+        </section>
+        <section class="panel__resultado">
+            <img class="panel__resultado__imagen" src="./img/MunecoEncriptador.png" alt="Muñeco Encriptador">
+            <p class="resultado__encriptado" id="resultado__encriptado">Ningún mensaje fue encontrado</p>
+            <p>Ingres el texto que desees encriptar o desencriptar</p>
+        </section>
+    </main>
+    <footer></footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
