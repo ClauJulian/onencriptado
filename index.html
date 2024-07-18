@@ -16,14 +16,17 @@
             <textarea class="panel__ingreso__textarea" id="ingreso__textarea" placeholder="Ingrese el texto aquí"></textarea>
             <div class="panel__ingreso__botonera">
                 <p>Sólo letras en minúscula y sin acentos</p>
-                <button onclick="encriptarTexto(textoATransformar)"> Encriptar </button>
-                <button onclick="desencriptarTexto(textoATransformar)"> Desencriptar </button>
+                <div>
+                    <button onclick="encriptarTexto(textoATransformar)" class="button__encriptar"> Encriptar </button>
+                    <button onclick="desencriptarTexto(textoATransformar)" class="button__desencriptar"> Desencriptar </button>
+                </div>
             </div>
         </section>
         <section class="panel__resultado">
-            <img class="panel__resultado__imagen" src="./img/MunecoEncriptador.png" alt="Muñeco Encriptador">
+            <img class="panel__resultado__imagen" id="resultado__imagen" src="./img/MunecoEncriptador.png" alt="Muñeco Encriptador">
             <p class="resultado__encriptado" id="resultado__encriptado">Ningún mensaje fue encontrado</p>
-            <p>Ingres el texto que desees encriptar o desencriptar</p>
+            <p id="panel__resultado__mensaje">Ingresa el texto que desees encriptar o desencriptar</p>
+            <button onclick="" id="button__copiar" class="button__copiar"> Copiar </button>
         </section>
     </main>
     <footer></footer>
