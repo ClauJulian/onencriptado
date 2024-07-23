@@ -11,14 +11,15 @@ La letra "u" es convertida para "ufat"
 
 // VARIABLES Y OBJETOS
 let ingreso__textarea = document.getElementById('ingreso__textarea');
-let button__copiar = document.getElementById('button__copiar');
 let resultado__encriptado = document.getElementById('resultado__encriptado');
+let button__copiar = document.getElementById('button__copiar');
+
+let error__validacion = 'El texto solo debe contener letras minúsculas sin acentos.';
+let msg__validacion = 'Sólo letras en minúscula y sin acentos';
+
 let textoATransformar = "";
-// let textoTransformado = "";
-// let resultadoBusqueda = "";
 let texto = "";
-// let arrayTexto = [];
-// let arrayEncriptado = [];
+
 let reglaParaEncriptar = {    
     "e":"enter",
     "i":"imes",
@@ -26,6 +27,11 @@ let reglaParaEncriptar = {
     "o":"ober",
     "u":"ufat",      
 }
+
+// let textoTransformado = "";
+// let resultadoBusqueda = "";
+// let arrayTexto = [];
+// let arrayEncriptado = [];
 
 // GENERICAS
 
@@ -76,7 +82,7 @@ function desencriptarTexto(){
 
 // API CLIPBOARD
 
-    button__copiar.addEventListener('click', function() {
+button__copiar.addEventListener('click', function() {
     texto = resultado__encriptado.textContent;
 
     navigator.clipboard.writeText(texto).then(function() {
@@ -102,17 +108,15 @@ function desencriptarTexto(){
     const input = event.target;
     const errorDiv = document.getElementById('panel__ingreso__validacion');
     
-    // Expresión regular para validar minúsculas y sin acentos
     const regex = /^[a-z\s]*$/;
     
     if (!regex.test(input.value)) {
-        errorDiv.textContent = 'El texto solo debe contener letras minúsculas sin acentos.';
+        errorDiv.textContent = error__validacion;
         errorDiv.style.color = 'red';
         displayHTML('button__encriptar', 'none');
         displayHTML('button__desencriptar', 'none');
     } else {
-        errorDiv.textContent = 'Sólo letras en minúscula y sin acentos';
-        input.style.backgroundColor = '';
+        errorDiv.textContent = msg__validacion;
         errorDiv.style.color = '';
         displayHTML('button__encriptar', 'inline');
         displayHTML('button__desencriptar', 'inline');
