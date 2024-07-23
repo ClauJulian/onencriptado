@@ -15,10 +15,10 @@
         <section class="panel__ingreso">
             <textarea class="panel__ingreso__textarea" id="ingreso__textarea" placeholder="Ingrese el texto aquí"></textarea>
             <div class="panel__ingreso__botonera">
-                <p>Sólo letras en minúscula y sin acentos</p>
+                <p id="panel__ingreso__validacion">Sólo letras en minúscula y sin acentos</p>
                 <div>
-                    <button onclick="encriptarTexto(textoATransformar)" class="button__encriptar"> Encriptar </button>
-                    <button onclick="desencriptarTexto(textoATransformar)" class="button__desencriptar"> Desencriptar </button>
+                    <button onclick="encriptarTexto(textoATransformar)" id="button__encriptar" class="button__encriptar"> Encriptar </button>
+                    <button onclick="desencriptarTexto(textoATransformar)" id="button__desencriptar" class="button__desencriptar"> Desencriptar </button>
                 </div>
             </div>
         </section>

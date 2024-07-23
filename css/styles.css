@@ -76,7 +76,7 @@ main {
     border: 1px solid var(--color--highlight);
 }
 .button__copiar {
-    width: 16rem;
+    width: 80%;
     height: 3rem;
     display: none;
     border-radius: 1.5rem;

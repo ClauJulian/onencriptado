@@ -9,19 +9,22 @@ La letra "u" es convertida para "ufat"
 **/
 
 
-
-
+// VARIABLES Y OBJETOS
+let ingreso__textarea = document.getElementById('ingreso__textarea');
+let button__copiar = document.getElementById('button__copiar');
+let resultado__encriptado = document.getElementById('resultado__encriptado');
 let textoATransformar = "";
-let resultadoBusqueda = "";
+// let textoTransformado = "";
+// let resultadoBusqueda = "";
 let texto = "";
-let arrayTexto = [];
-let arrayEncriptado = [];
-let reglaParaEncriptar = {
-    "a":"ai",
+// let arrayTexto = [];
+// let arrayEncriptado = [];
+let reglaParaEncriptar = {    
     "e":"enter",
     "i":"imes",
+    "a":"ai",
     "o":"ober",
-    "u":"ufat",
+    "u":"ufat",      
 }
 
 // GENERICAS
@@ -47,9 +50,88 @@ function mostrarResultado(resultado){
     innerHTML("resultado__encriptado",resultado);
 }
 
-// ENCRIPTA TEXTO
+// ENCRIPTAR EL TEXTO 
+
 function encriptarTexto(){
-    textoATransformar = valueHTML("ingreso__textarea");;
+    textoATransformar = valueHTML("ingreso__textarea");
+    for (let clave in reglaParaEncriptar) {      
+        let regex = new RegExp(clave, "g");
+        textoATransformar = textoATransformar.replace(regex, reglaParaEncriptar[clave]);
+    }
+    mostrarResultado(textoATransformar);
+}
+   
+// DESENCRIPTAR EL TEXTO 
+
+function desencriptarTexto(){
+    textoATransformar = valueHTML("ingreso__textarea");
+        for (let letra in reglaParaEncriptar) {
+            let clave = reglaParaEncriptar[letra];
+            let regex = new RegExp(clave, "g");       
+            textoATransformar = textoATransformar.replace(regex, letra);
+        }    
+    mostrarResultado(textoATransformar);
+};
+
+
+// API CLIPBOARD
+
+    button__copiar.addEventListener('click', function() {
+    texto = resultado__encriptado.textContent;
+
+    navigator.clipboard.writeText(texto).then(function() {
+        alert('Texto copiado al portapapeles');
+    }).catch(function(error) {
+        console.error('Error al copiar el texto: ', error);
+    });
+
+    ingreso__textarea.addEventListener('focus', function() {
+        navigator.clipboard.readText().then(function(texto) {
+            ingreso__textarea.value = texto;            
+        }).catch(function(error) {
+            console.error('Error al leer el texto del portapapeles: ', error);
+        });
+    });    
+
+});
+
+
+// VALIDAR QUE NO HAYA MAYUSCULAS NI ACENTOS
+
+    ingreso__textarea.addEventListener('input', function(event) {
+    const input = event.target;
+    const errorDiv = document.getElementById('panel__ingreso__validacion');
+    
+    // Expresión regular para validar minúsculas y sin acentos
+    const regex = /^[a-z\s]*$/;
+    
+    if (!regex.test(input.value)) {
+        errorDiv.textContent = 'El texto solo debe contener letras minúsculas sin acentos.';
+        errorDiv.style.color = 'red';
+        displayHTML('button__encriptar', 'none');
+        displayHTML('button__desencriptar', 'none');
+    } else {
+        errorDiv.textContent = 'Sólo letras en minúscula y sin acentos';
+        input.style.backgroundColor = '';
+        errorDiv.style.color = '';
+        displayHTML('button__encriptar', 'inline');
+        displayHTML('button__desencriptar', 'inline');
+    }
+});
+
+
+
+
+
+
+/** 
+MATERIAL PARA OTROS TRABAJOS - Pasar a un file de estudio
+
+ENCRIPTA TEXTO - 
+function encriptarTexto(){
+    arrayEncriptado=[];
+    textoATransformar = valueHTML("ingreso__textarea");
+    
     arrayTexto = textoATransformar.split('');
 
     for(let i = 0; i < arrayTexto.length; i++) {
@@ -62,42 +144,4 @@ function encriptarTexto(){
     resultadoBusqueda = arrayEncriptado.join('');
     mostrarResultado(resultadoBusqueda);
  }
-
-   
-// DESENCRIPTAR EL TEXTO 
-
-function desencriptarTexto(){
-    textoATransformar = valueHTML("ingreso__textarea");
-        for (let letra in reglaParaEncriptar) {
-            let clave = reglaParaEncriptar[letra];
-            let regex = new RegExp(clave, "g");       
-            textoATransformar = textoATransformar.replace(regex, letra);
-        }
-    
-    mostrarResultado(textoATransformar);
-};
-
-
-// API CLIPBOARD
-
-document.getElementById('button__copiar').addEventListener('click', function() {
-    texto = document.getElementById('resultado__encriptado').textContent;
-
-    navigator.clipboard.writeText(texto).then(function() {
-        alert('Texto copiado al portapapeles');
-    }).catch(function(error) {
-        console.error('Error al copiar el texto: ', error);
-    });
-
-    document.getElementById('ingreso__textarea').addEventListener('focus', function() {
-        navigator.clipboard.readText().then(function(texto) {
-            document.getElementById('ingreso__textarea').value = texto;            
-        }).catch(function(error) {
-            console.error('Error al leer el texto del portapapeles: ', error);
-        });
-    });    
-
-});
-
-
-// VALIDAR QUE NO HAYA MAYUSCULAS NI ACENTOS
+**/
