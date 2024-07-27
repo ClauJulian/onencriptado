@@ -7,39 +7,61 @@
 }
 
 :root {
-    --color--background: #D8DFE8;
-    --color--background-paneles: white;
-    --color--highlight: #0A3871;
-    --color--texto--panel:#495057;
+    --color--background: rgba(39, 27, 54, 0.68);
+    --color--background-paneles: rgba(43, 32, 68, 0.8);
+    --color--background-footer: #12073c;
+    --color--highlight: #90bbf0;
+    --color--texto--panel:#8ab5c8;
+    --color--texto--secundario:#0d0937;
     --color--texto:white;    
 }
 
 body {
-    background-color: var(--color--background);
+    background-image: url(/img/TecnoPurpple.png);
+    /* background-image: url(/img/ChipRose.png); */
+    /* background-image: url(/img/Matrix.png); */
+}
+nav {
+    height: 10vh;
+    padding: 10px;
+    background-color: var(--color--background-header);
 }
 main {
     display: flex;
     justify-content: center;
-    height: 90vh;
-    gap: 30px;
-    
+    margin: 1rem 0rem;
+    height: 80vh;
+    gap: 2.5rem;
+}
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 8vh;
+    color: var(--color--texto);
+    background-color: var(--color--background-footer);
 }
 
 .panel__ingreso{
+    color: var(--color--highlight);   
     display: flex;
     flex-direction: column;
     justify-content:space-between;
     width: 40%;
-    padding: 2% 0%;
-    
+    padding: 2% 1%;
 }
 .panel__ingreso__textarea {
+    color: var(--color--texto--panel);   
     font-family: "inter", sans-serif;
-    color: var(--color--highlight);    
     font-size: 2rem;
     height: 70vh;
     border:none;
-    background-color: var(--color--background);
+    background-color: unset;
+    outline:none;
+}
+.panel__ingreso__textarea::placeholder {
+    color: var(--color--texto--panel);
+    font-size: 2rem;
 }
 
 .panel__ingreso__botonera {
@@ -47,33 +69,45 @@ main {
     flex-direction: column;
     gap: 1rem;
 }
+.panel__ingreso__acciones {
+    display: flex;
+    justify-content: space-between;
+}
 .panel__resultado {
     color:var(--color--texto--panel);
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content:center;
     align-items: center;
-    padding:10px;
+    padding: 2% 1%;
     width: 20%;
-    gap: 1rem;
     background-color: var(--color--background-paneles);
+    border-radius: 2rem;
+}
+.panel__resultado__contenido {
+    display:flex;
+    flex-direction: column;
+    margin-bottom: 2rem;
+    gap: 1rem;
+
 }
 .panel__resultado__imagen {
     width:  80%;
 }
 .button__encriptar {
-    width: 16rem;
+    width: 15rem;
     height: 3rem;
     border-radius: 1.5rem;
     border: 1px solid var(--color--highlight);
     background-color: var(--color--highlight);
-    color: var(--color--texto);
+    color: var(--color--texto--secundario);
 }
 .button__desencriptar {
-    width: 16rem;
+    width: 15rem;
     height: 3rem;
     border-radius: 1.5rem;
     border: 1px solid var(--color--highlight);
+    color: var(--color--texto--secundario);
 }
 .button__copiar {
     width: 80%;
@@ -81,10 +115,57 @@ main {
     display: none;
     border-radius: 1.5rem;
     border: 1px solid var(--color--background-paneles);
+    color: var(--color--texto--secundario);
 }
 .resultado__encriptado {
     font-size: 1.5rem;
     font-family: "inter", sans-serif;
 }
 
-/* faltan las media query */
+
+
+
+@media (max-width: 768px){
+    main {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height:unset;
+        gap:2rem;    
+    }
+    .panel__ingreso{
+        width: 80%;    
+    }
+    .panel__resultado {
+        width: 80%; 
+    }
+    .panel__resultado__imagen {
+        display: none;
+        width:  0%;
+    }
+
+
+
+}
+
+@media (max-width: 400px){
+    
+    .panel__ingreso{
+        width: 90%;    
+    }
+    .panel__resultado {
+        width: 90%; 
+    }
+    .panel__ingreso__acciones {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1rem;
+    }
+    .button__encriptar {
+        width: 100%;
+    }
+    .button__desencriptar {
+        width: 100%;
+    }
+}

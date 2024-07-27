@@ -43,16 +43,17 @@ function valueHTML(id){
     return value = document.getElementById(id).value;
 };
 
-function displayHTML(id, especificacion){
-    document.getElementById(id).style.display = especificacion;
-};
+function styleCSS(id,atributo,especificacion){
+    document.getElementById(id).style[atributo] = especificacion;
+}
 
 // MOSTRAR RESULTADO Y CAMBIAR ELEMENTOS
 
 function mostrarResultado(resultado){
-    displayHTML("resultado__imagen",'none');
-    displayHTML("panel__resultado__mensaje",'none');
-    displayHTML("button__copiar", 'inline');
+    styleCSS("panel__resultado","justifyContent","space-between");
+    styleCSS("resultado__imagen",'display','none');
+    styleCSS("panel__resultado__mensaje",'display','none');
+    styleCSS("button__copiar",'display', 'inline');
     innerHTML("resultado__encriptado",resultado);
 }
 
@@ -86,14 +87,15 @@ button__copiar.addEventListener('click', function() {
     texto = resultado__encriptado.textContent;
 
     navigator.clipboard.writeText(texto).then(function() {
-        alert('Texto copiado al portapapeles');
+        button__copiar.style.backgroundColor="lightblue";
     }).catch(function(error) {
         console.error('Error al copiar el texto: ', error);
     });
 
     ingreso__textarea.addEventListener('focus', function() {
         navigator.clipboard.readText().then(function(texto) {
-            ingreso__textarea.value = texto;            
+            ingreso__textarea.value = texto; 
+            button__copiar.style.backgroundColor="";           
         }).catch(function(error) {
             console.error('Error al leer el texto del portapapeles: ', error);
         });
@@ -113,13 +115,13 @@ button__copiar.addEventListener('click', function() {
     if (!regex.test(input.value)) {
         errorDiv.textContent = error__validacion;
         errorDiv.style.color = 'red';
-        displayHTML('button__encriptar', 'none');
-        displayHTML('button__desencriptar', 'none');
+        styleCSS('button__encriptar','display','none');
+        styleCSS('button__desencriptar','display','none');
     } else {
         errorDiv.textContent = msg__validacion;
         errorDiv.style.color = '';
-        displayHTML('button__encriptar', 'inline');
-        displayHTML('button__desencriptar', 'inline');
+        styleCSS('button__encriptar','display', 'inline');
+        styleCSS('button__desencriptar','display', 'inline');
     }
 });
 
