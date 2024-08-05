@@ -56,28 +56,59 @@ function mostrarResultado(resultado){
     styleCSS("button__copiar",'display', 'inline');
     innerHTML("resultado__encriptado",resultado);
 }
+// BOX DE VALIDACION
+function activaEstiloValidacion(){
+    styleCSS('panel__ingreso__validacion','backgroundColor','rgba(18, 20, 131, 0.8)');
+    styleCSS('panel__ingreso__validacion','border','2px solid #0d0937');
+    styleCSS('panel__ingreso__validacion','borderRadius','1.5rem');
+    styleCSS('panel__ingreso__validacion','boxShadow','3px 3px 5px rgba(0, 0, 0, 0.3)');
+    styleCSS('panel__ingreso__validacion','fontWeight','bold');
+    styleCSS('panel__ingreso__validacion','fontSize','1.5rem');
+    styleCSS('panel__ingreso__validacion','padding','0.5rem');
+    styleCSS('panel__ingreso__validacion','color','red');
+    styleCSS('button__encriptar','display','none');
+    styleCSS('button__desencriptar','display','none');
+}
+function desactivaEstiloValidacion(){
+    styleCSS('panel__ingreso__validacion','backgroundColor','');
+    styleCSS('panel__ingreso__validacion','border','');
+    styleCSS('panel__ingreso__validacion','borderRadius','');
+    styleCSS('panel__ingreso__validacion','boxShadow','');
+    styleCSS('panel__ingreso__validacion','fontWeight','');
+    styleCSS('panel__ingreso__validacion','fontSize','');
+    styleCSS('panel__ingreso__validacion','padding','');
+    styleCSS('panel__ingreso__validacion','color','');
+    styleCSS('button__encriptar','display', 'inline');
+    styleCSS('button__desencriptar','display', 'inline');
+}
+
+
 
 // ENCRIPTAR EL TEXTO 
 
 function encriptarTexto(){
     textoATransformar = valueHTML("ingreso__textarea");
-    for (let clave in reglaParaEncriptar) {      
-        let regex = new RegExp(clave, "g");
-        textoATransformar = textoATransformar.replace(regex, reglaParaEncriptar[clave]);
+    if(textoATransformar){
+        for (let clave in reglaParaEncriptar) {      
+            let regex = new RegExp(clave, "g");
+            textoATransformar = textoATransformar.replace(regex, reglaParaEncriptar[clave]);
+        }
+        mostrarResultado(textoATransformar);
     }
-    mostrarResultado(textoATransformar);
 }
    
 // DESENCRIPTAR EL TEXTO 
 
 function desencriptarTexto(){
     textoATransformar = valueHTML("ingreso__textarea");
+    if(textoATransformar){
         for (let letra in reglaParaEncriptar) {
             let clave = reglaParaEncriptar[letra];
             let regex = new RegExp(clave, "g");       
             textoATransformar = textoATransformar.replace(regex, letra);
         }    
     mostrarResultado(textoATransformar);
+    }
 };
 
 
@@ -95,7 +126,8 @@ button__copiar.addEventListener('click', function() {
     ingreso__textarea.addEventListener('focus', function() {
         navigator.clipboard.readText().then(function(texto) {
             ingreso__textarea.value = texto; 
-            button__copiar.style.backgroundColor="";           
+            button__copiar.style.backgroundColor=""; 
+            innerHTML("resultado__encriptado", "");         
         }).catch(function(error) {
             console.error('Error al leer el texto del portapapeles: ', error);
         });
@@ -114,16 +146,13 @@ button__copiar.addEventListener('click', function() {
     
     if (!regex.test(input.value)) {
         errorDiv.textContent = error__validacion;
-        errorDiv.style.color = 'red';
-        styleCSS('button__encriptar','display','none');
-        styleCSS('button__desencriptar','display','none');
+        activaEstiloValidacion();
     } else {
         errorDiv.textContent = msg__validacion;
-        errorDiv.style.color = '';
-        styleCSS('button__encriptar','display', 'inline');
-        styleCSS('button__desencriptar','display', 'inline');
+        desactivaEstiloValidacion();
     }
 });
+
 
 
 

@@ -13,13 +13,14 @@
     --color--highlight: #90bbf0;
     --color--texto--panel:#8ab5c8;
     --color--texto--secundario:#0d0937;
-    --color--texto:white;    
+    --color--texto:rgb(219, 228, 247);    
+    --color--hover-mainbtn: #4672e3;
+    --color--hover-btn: #a180c1;
+    --color--validation: rgba(15, 16, 109, 0.8);
 }
 
 body {
     background-image: url(/img/TecnoPurpple.png);
-    /* background-image: url(/img/ChipRose.png); */
-    /* background-image: url(/img/Matrix.png); */
 }
 nav {
     height: 10vh;
@@ -35,6 +36,7 @@ main {
 }
 footer {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 8vh;
@@ -73,13 +75,17 @@ footer {
     display: flex;
     justify-content: space-between;
 }
+.panel__ingreso__validacion {
+    display: flex;
+    align-items: center;
+}
 .panel__resultado {
     color:var(--color--texto--panel);
     display: flex;
     flex-direction: column;
     justify-content:center;
     align-items: center;
-    padding: 2% 1%;
+    padding: 1rem;
     width: 20%;
     background-color: var(--color--background-paneles);
     border-radius: 2rem;
@@ -89,10 +95,12 @@ footer {
     flex-direction: column;
     margin-bottom: 2rem;
     gap: 1rem;
-
+}
+.panel__resultado__contenido p {
+    text-align: center;
 }
 .panel__resultado__imagen {
-    width:  80%;
+    width:  100%;
 }
 .button__encriptar {
     width: 15rem;
@@ -102,12 +110,22 @@ footer {
     background-color: var(--color--highlight);
     color: var(--color--texto--secundario);
 }
+.button__encriptar:hover {
+    border: 1px solid var(--color--hover-mainbtn);
+    background-color: var(--color--hover-mainbtn);
+    color: var(--color--texto);
+}
 .button__desencriptar {
     width: 15rem;
     height: 3rem;
     border-radius: 1.5rem;
     border: 1px solid var(--color--highlight);
     color: var(--color--texto--secundario);
+}
+.button__desencriptar:hover {
+    border: 1px solid var(--color--hover-btn);
+    background-color: var(--color--hover-btn);
+    color: var(--color--texto);
 }
 .button__copiar {
     width: 80%;
@@ -138,6 +156,7 @@ footer {
     }
     .panel__resultado {
         width: 80%; 
+        margin-bottom: 6vh;
     }
     .panel__resultado__imagen {
         display: none;
@@ -153,9 +172,14 @@ footer {
     .panel__ingreso{
         width: 90%;    
     }
+    .panel__ingreso__textarea {
+        height: 50vh;
+    }
     .panel__resultado {
         width: 90%; 
+        margin-bottom: 10vh;
     }
+    
     .panel__ingreso__acciones {
         display: flex;
         flex-direction: column;
