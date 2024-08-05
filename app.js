@@ -148,7 +148,7 @@ button__copiar.addEventListener('click', function() {
         errorDiv.textContent = error__validacion;
         activaEstiloValidacion();
     } else {
-        errorDiv.textContent = msg__validacion;
+        errorDiv.innerHTML = '<span class="material-symbols-outlined">info</span>'+ msg__validacion;
         desactivaEstiloValidacion();
     }
 });
