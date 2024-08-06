@@ -159,7 +159,7 @@ button__copiar.addEventListener('click', function() {
     const input = event.target;
     const errorDiv = document.getElementById('panel__ingreso__validacion');
     
-    const regex = /^[a-z\s]*$/;
+    const regex = /^[a-zñ\s]*$/;
     
     if (!regex.test(input.value)) {
         errorDiv.textContent = error__validacion;
