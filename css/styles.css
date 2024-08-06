@@ -45,17 +45,19 @@ footer {
 }
 
 .panel__ingreso{
+    position: relative;
     color: var(--color--highlight);   
     display: flex;
     flex-direction: column;
     justify-content:space-between;
     width: 40%;
-    padding: 1rem;
+    padding: 0.5rem 1rem 1rem 1rem;
 }
 .panel__ingreso__textarea {
     color: var(--color--texto--panel);   
     font-family: "inter", sans-serif;
     font-size: 2rem;
+    padding: 0rem 1.2rem 1rem 1rem;
     height: 70vh;
     border:none;
     background-color: unset;
@@ -79,6 +81,18 @@ footer {
     display: flex;
     align-items: center;
 }
+.icon__refresh{
+    display: none;
+    position: absolute;
+    top: 1.2rem; 
+    right: 0rem; 
+    width: 2rem; 
+    height: 2rem; 
+    cursor: pointer;
+    border: 1px solid var(--color--highlight);
+    border-radius: 5px; 
+    padding: 2px;
+}
 .panel__resultado {
     color:var(--color--texto--panel);
     display: flex;
@@ -98,6 +112,7 @@ footer {
 }
 .panel__resultado__contenido p {
     text-align: center;
+    width: 100%;
 }
 .panel__resultado__imagen {
     width:  100%;
@@ -162,24 +177,23 @@ footer {
         display: none;
         width:  0%;
     }
-
-
-
 }
 
-@media (max-width: 400px){
-    
+@media (max-width: 400px){ 
     .panel__ingreso{
         width: 90%;    
     }
     .panel__ingreso__textarea {
         height: 50vh;
     }
+    .icon__refresh{
+        top: 30.5rem; 
+        right: 8.8rem; 
+    }
     .panel__resultado {
         width: 90%; 
         margin-bottom: 10vh;
-    }
-    
+    }   
     .panel__ingreso__acciones {
         display: flex;
         flex-direction: column;

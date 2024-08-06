@@ -1,18 +1,11 @@
-console.log("Trabajo de encriptado");
-
-/** REGLA PARA ENCRIPTAR
-La letra "e" es convertida para "enter"
-La letra "i" es convertida para "imes"
-La letra "a" es convertida para "ai"
-La letra "o" es convertida para "ober"
-La letra "u" es convertida para "ufat"
-**/
+//console.log("Trabajo de encriptado");
 
 
-// VARIABLES Y OBJETOS
+/**  VARIABLES Y OBJETOS */
 let ingreso__textarea = document.getElementById('ingreso__textarea');
 let resultado__encriptado = document.getElementById('resultado__encriptado');
 let button__copiar = document.getElementById('button__copiar');
+let ingreso__refresh = document.getElementById('ingreso__refresh');
 
 let error__validacion = 'El texto solo debe contener letras minúsculas sin acentos.';
 let msg__validacion = 'Sólo letras en minúscula y sin acentos';
@@ -28,13 +21,7 @@ let reglaParaEncriptar = {
     "u":"ufat",      
 }
 
-// let textoTransformado = "";
-// let resultadoBusqueda = "";
-// let arrayTexto = [];
-// let arrayEncriptado = [];
-
-// GENERICAS
-
+/** FUNCIONES UTILES */
 function innerHTML(id,texto){
     document.getElementById(id).innerHTML= texto;
 };
@@ -47,16 +34,17 @@ function styleCSS(id,atributo,especificacion){
     document.getElementById(id).style[atributo] = especificacion;
 }
 
-// MOSTRAR RESULTADO Y CAMBIAR ELEMENTOS
-
+/**  FUNCIONES PARA MOSTRAR RESULTADO Y CAMBIAR ELEMENTOS */
 function mostrarResultado(resultado){
     styleCSS("panel__resultado","justifyContent","space-between");
     styleCSS("resultado__imagen",'display','none');
     styleCSS("panel__resultado__mensaje",'display','none');
     styleCSS("button__copiar",'display', 'inline');
+    styleCSS("icon__refresh",'display', 'inline');
     innerHTML("resultado__encriptado",resultado);
+
 }
-// BOX DE VALIDACION
+/**  FUNCIONES DE ESTILO DE BOX DE VALIDACION */
 function activaEstiloValidacion(){
     styleCSS('panel__ingreso__validacion','backgroundColor','rgba(18, 20, 131, 0.8)');
     styleCSS('panel__ingreso__validacion','border','2px solid #0d0937');
@@ -82,7 +70,33 @@ function desactivaEstiloValidacion(){
     styleCSS('button__desencriptar','display', 'inline');
 }
 
+// FUNCION BORRADO Y REINICIADO
 
+function refreshTexto(){
+    ingreso__textarea.value = '';
+    resultado__encriptado.innerHTML = 'Ningún mensaje fue encontrado'; 
+    styleCSS("resultado__imagen",'display','inline');
+    styleCSS("panel__resultado","justifyContent","center");
+    styleCSS("panel__resultado__mensaje",'display','inline');
+    styleCSS("button__copiar",'display', 'none');
+    styleCSS("icon__refresh",'display', 'none');
+    clearClipboard();
+}
+
+// BORRADO DEL CLIPBOARD
+
+async function clearClipboard() {
+    try {
+        await navigator.clipboard.writeText('');
+        console.log('Portapapeles borrado.');
+    } catch (err) {
+        console.error('Error al borrar el portapapeles: ', err);
+    }
+}
+
+
+
+/** DESARROLLO DE ENCRIPTADOR DE TEXTO */
 
 // ENCRIPTAR EL TEXTO 
 
@@ -110,6 +124,9 @@ function desencriptarTexto(){
     mostrarResultado(textoATransformar);
     }
 };
+
+// REFRESH TEXTO
+icon__refresh.addEventListener('click', refreshTexto);
 
 
 // API CLIPBOARD
@@ -155,28 +172,3 @@ button__copiar.addEventListener('click', function() {
 
 
 
-
-
-
-
-/** 
-MATERIAL PARA OTROS TRABAJOS - Pasar a un file de estudio
-
-ENCRIPTA TEXTO - 
-function encriptarTexto(){
-    arrayEncriptado=[];
-    textoATransformar = valueHTML("ingreso__textarea");
-    
-    arrayTexto = textoATransformar.split('');
-
-    for(let i = 0; i < arrayTexto.length; i++) {
-        if (reglaParaEncriptar.hasOwnProperty(arrayTexto[i])){
-            arrayEncriptado.push(reglaParaEncriptar[arrayTexto[i]]);
-        }else{
-            arrayEncriptado.push(arrayTexto[i]);
-        }
-    };    
-    resultadoBusqueda = arrayEncriptado.join('');
-    mostrarResultado(resultadoBusqueda);
- }
-**/
