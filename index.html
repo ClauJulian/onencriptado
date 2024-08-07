@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>One Encriptado</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <link rel="stylesheet" href="./css/styles.css">
 </head>
@@ -18,26 +20,41 @@
         <section class="panel__ingreso">
             <textarea class="panel__ingreso__textarea" id="ingreso__textarea" placeholder="Ingrese el texto aquí"></textarea>
             <span class="material-symbols-outlined icon__refresh" id="icon__refresh" title="refresh">restart_alt</span>
-            <div class="panel__ingreso__botonera">
-                <p class="panel__ingreso__validacion" id="panel__ingreso__validacion"><span class="material-symbols-outlined">info</span>Sólo letras en minúscula y sin acentos</p>
+            <div class="panel__ingreso__botonera" id="panel__ingreso__botonera">
+                <p class="panel__ingreso__validacion"><span class="material-symbols-outlined">info</span>Sólo letras en minúscula y sin acentos</p>
                 <div class="panel__ingreso__acciones">
                     <button onclick="encriptarTexto(textoATransformar)" id="button__encriptar" class="button__encriptar"> Encriptar </button>
                     <button onclick="desencriptarTexto(textoATransformar)" id="button__desencriptar" class="button__desencriptar"> Desencriptar </button>
                 </div>
             </div>
+            <div class="validacion__box" id="validacion__box">
+                <p class="validacion__mensaje">El texto sólo debe contener letras minúsculas sin acentos</p>
+            </div>
         </section>
         <section class="panel__resultado" id="panel__resultado">
             <div class="panel__resultado__contenido">
                 <img class="panel__resultado__imagen" id="resultado__imagen" src="./img/MunecoEncriptador.png" alt="Muñeco Encriptador">
-                <p class="resultado__encriptado" id="resultado__encriptado">Ningún mensaje fue encontrado</p>
-                <p id="panel__resultado__mensaje">Ingresa el texto que desees encriptar o desencriptar</p>
+                <p class="resultado__encriptado" id="resultado__encriptado">ONEncriptado</p>
+                <p id="panel__resultado__mensaje"> La clave para proteger tus mensajes confidenciales.</p>
             </div>
             <button onclick="" id="button__copiar" class="button__copiar"> Copiar </button>
         </section>
     </main>
     <footer>
-        <p>ONE LATAM Challenge Encriptado@2014</p>
-        <p>by Claudia Edith Julian</p>
+        <div class="footer__contenido">
+            <p>ONE LATAM @2024</p>
+            <p>by Claudia E. Julian</p>
+
+            <div class="icon__redes">
+                <a href="https://www.linkedin.com/in/claudiaedithjulian/" target="_blank">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+
+                <a href="https://github.com/ClauJulian" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a>
+            </div>
+        </div>
     </footer>
 
     <script src="app.js"></script>

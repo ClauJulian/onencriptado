@@ -41,57 +41,24 @@ function mostrarResultado(resultado){
     styleCSS("panel__resultado__mensaje",'display','none');
     styleCSS("button__copiar",'display', 'inline');
     styleCSS("icon__refresh",'display', 'inline');
+    styleCSS("resultado__encriptado",'color', 'var(--color--texto--panel)');
     innerHTML("resultado__encriptado",resultado);
 
 }
 /**  FUNCIONES DE ESTILO DE BOX DE VALIDACION */
-function activaEstiloValidacion(){
-    styleCSS('panel__ingreso__validacion','backgroundColor','rgba(18, 20, 131, 0.8)');
-    styleCSS('panel__ingreso__validacion','border','2px solid #0d0937');
-    styleCSS('panel__ingreso__validacion','borderRadius','1.5rem');
-    styleCSS('panel__ingreso__validacion','boxShadow','3px 3px 5px rgba(0, 0, 0, 0.3)');
-    styleCSS('panel__ingreso__validacion','fontWeight','bold');
-    styleCSS('panel__ingreso__validacion','fontSize','1.5rem');
-    styleCSS('panel__ingreso__validacion','padding','0.5rem');
-    styleCSS('panel__ingreso__validacion','color','red');
-    styleCSS('button__encriptar','display','none');
-    styleCSS('button__desencriptar','display','none');
+function activaValidacion(){
+    styleCSS('panel__ingreso__botonera','display','none');
+    styleCSS('validacion__box','display','inline');
 }
-function desactivaEstiloValidacion(){
-    styleCSS('panel__ingreso__validacion','backgroundColor','');
-    styleCSS('panel__ingreso__validacion','border','');
-    styleCSS('panel__ingreso__validacion','borderRadius','');
-    styleCSS('panel__ingreso__validacion','boxShadow','');
-    styleCSS('panel__ingreso__validacion','fontWeight','');
-    styleCSS('panel__ingreso__validacion','fontSize','');
-    styleCSS('panel__ingreso__validacion','padding','');
-    styleCSS('panel__ingreso__validacion','color','');
-    styleCSS('button__encriptar','display', 'inline');
-    styleCSS('button__desencriptar','display', 'inline');
+function desactivaValidacion(){
+    styleCSS('panel__ingreso__botonera','display','flex');
+    styleCSS('validacion__box','display','none');
 }
 
-// FUNCION BORRADO Y REINICIADO
+// FUNCION REINICIAR APP
 
 function refreshTexto(){
-    ingreso__textarea.value = '';
-    resultado__encriptado.innerHTML = 'Ningún mensaje fue encontrado'; 
-    styleCSS("resultado__imagen",'display','inline');
-    styleCSS("panel__resultado","justifyContent","center");
-    styleCSS("panel__resultado__mensaje",'display','inline');
-    styleCSS("button__copiar",'display', 'none');
-    styleCSS("icon__refresh",'display', 'none');
-    clearClipboard();
-}
-
-// BORRADO DEL CLIPBOARD
-
-async function clearClipboard() {
-    try {
-        await navigator.clipboard.writeText('');
-        console.log('Portapapeles borrado.');
-    } catch (err) {
-        console.error('Error al borrar el portapapeles: ', err);
-    }
+    location.reload();
 }
 
 
@@ -157,16 +124,13 @@ button__copiar.addEventListener('click', function() {
 
     ingreso__textarea.addEventListener('input', function(event) {
     const input = event.target;
-    const errorDiv = document.getElementById('panel__ingreso__validacion');
     
     const regex = /^[a-zñ\s]*$/;
     
     if (!regex.test(input.value)) {
-        errorDiv.textContent = error__validacion;
-        activaEstiloValidacion();
+        activaValidacion();
     } else {
-        errorDiv.innerHTML = '<span class="material-symbols-outlined">info</span>'+ msg__validacion;
-        desactivaEstiloValidacion();
+        desactivaValidacion();
     }
 });
 

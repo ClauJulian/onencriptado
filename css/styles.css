@@ -7,15 +7,16 @@
 }
 
 :root {
-    --color--background: rgba(39, 27, 54, 0.68);
     --color--background-paneles: rgba(43, 32, 68, 0.8);
     --color--background-footer: #12073c;
     --color--highlight: #90bbf0;
     --color--texto--panel:#8ab5c8;
     --color--texto--secundario:#0d0937;
-    --color--texto:rgb(219, 228, 247);    
+    --color--texto:rgb(212, 224, 249); 
+    --color--texto--warning:rgb(239, 55, 92); 
     --color--hover-mainbtn: #4672e3;
     --color--hover-btn: #a180c1;
+    --color--btn: #9064bd;
     --color--validation: rgba(15, 16, 109, 0.8);
 }
 
@@ -25,7 +26,6 @@ body {
 nav {
     height: 10vh;
     padding: 10px;
-    background-color: var(--color--background-header);
 }
 main {
     display: flex;
@@ -34,19 +34,24 @@ main {
     height: 80vh;
     gap: 2.5rem;
 }
-footer {
+footer {    
     display: flex;
-    flex-direction: column;
     justify-content: center;
-    align-items: center;
+    margin-top: 6vh;
     height: 8vh;
-    color: var(--color--texto);
+    color: var(--color--texto--panel);
     background-color: var(--color--background-footer);
+}
+.footer__contenido {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 40vw;
 }
 
 .panel__ingreso{
     position: relative;
-    color: var(--color--highlight);   
+    color: var(--color--texto--panel);   
     display: flex;
     flex-direction: column;
     justify-content:space-between;
@@ -57,7 +62,7 @@ footer {
     color: var(--color--texto--panel);   
     font-family: "inter", sans-serif;
     font-size: 2rem;
-    padding: 0rem 1.2rem 1rem 1rem;
+    padding: 0rem 1.2rem 1rem 0rem;
     height: 70vh;
     border:none;
     background-color: unset;
@@ -80,6 +85,21 @@ footer {
 .panel__ingreso__validacion {
     display: flex;
     align-items: center;
+}
+.validacion__box {
+    display: none;
+    background-color:var(--color--validation);
+    border: 2px solid var(--color--hover-mainbtn);
+    border-radius: 1.5rem;
+    box-shadow:3px 3px 5px var(--color--hover-mainbtn);
+    font-weight: bold;
+    font-size: 1.5rem;
+    padding: 0.5rem;
+    color: var(--color--texto--warning);
+}
+.validacion__box p {
+    text-align: center;
+    font-family: 'Courier New', Courier, monospace;
 }
 .icon__refresh{
     display: none;
@@ -107,12 +127,18 @@ footer {
 .panel__resultado__contenido {
     display:flex;
     flex-direction: column;
+    width: 100%;
     margin-bottom: 2rem;
     gap: 1rem;
 }
 .panel__resultado__contenido p {
     text-align: center;
-    width: 100%;
+    overflow-wrap: break-word;
+}
+.resultado__encriptado {
+    font-size: 1.5rem;
+    font-family: "inter", sans-serif;
+    color: var(--color--texto);
 }
 .panel__resultado__imagen {
     width:  100%;
@@ -134,13 +160,14 @@ footer {
     width: 15rem;
     height: 3rem;
     border-radius: 1.5rem;
-    border: 1px solid var(--color--highlight);
-    color: var(--color--texto--secundario);
+    background-color: var(--color--hover-btn);
+    border: 1px solid var(--color--hover-btn);
+    color: var(--color--texto);
 }
 .button__desencriptar:hover {
-    border: 1px solid var(--color--hover-btn);
-    background-color: var(--color--hover-btn);
-    color: var(--color--texto);
+    background-color: var(--color--btn);
+    border: 1px solid var(--color--btn);
+    color: var(--color--texto--secundario);
 }
 .button__copiar {
     width: 80%;
@@ -150,9 +177,17 @@ footer {
     border: 1px solid var(--color--background-paneles);
     color: var(--color--texto--secundario);
 }
-.resultado__encriptado {
+.icon__redes {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 4rem;
+    height: 1.5rem;
+   
+}
+.icon__redes a i {
     font-size: 1.5rem;
-    font-family: "inter", sans-serif;
+    color: var(--color--texto--panel);
 }
 
 
@@ -177,6 +212,9 @@ footer {
         display: none;
         width:  0%;
     }
+    .footer__contenido {
+        width: 50vh;
+    }
 }
 
 @media (max-width: 400px){ 
@@ -184,10 +222,14 @@ footer {
         width: 90%;    
     }
     .panel__ingreso__textarea {
+        font-size: 1.5rem;
         height: 50vh;
     }
+    .resultado__encriptado {
+        font-size: 1.2rem;
+    }
     .icon__refresh{
-        top: 30.5rem; 
+        top: 30rem; 
         right: 8.8rem; 
     }
     .panel__resultado {
@@ -205,5 +247,14 @@ footer {
     }
     .button__desencriptar {
         width: 100%;
+    }
+    .footer__contenido {
+        width: 100vh;
+    }
+    .icon__redes {
+        width: 3rem;
+    }
+    .icon__redes a i {
+        font-size: 1.2rem;
     }
 }
