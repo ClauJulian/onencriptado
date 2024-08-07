@@ -204,6 +204,9 @@ footer {
     .panel__ingreso{
         width: 80%;    
     }
+    .panel__ingreso__textarea::placeholder {
+        font-size: 1.5rem;
+    }
     .panel__resultado {
         width: 80%; 
         margin-bottom: 6vh;
@@ -223,18 +226,26 @@ footer {
     }
     .panel__ingreso__textarea {
         font-size: 1.5rem;
-        height: 50vh;
+        height: 40vh;
+    }
+    .panel__ingreso__textarea::placeholder {
+        font-size: 1.2rem;
     }
     .resultado__encriptado {
         font-size: 1.2rem;
     }
-    .icon__refresh{
-        top: 30rem; 
-        right: 8.8rem; 
+    .icon__refresh{        
+        font-size: 1rem;
+        top: 1rem; 
+        right: 0.5rem; 
+        width: 1.2rem; 
+        height: 1.2rem; 
+        padding: 1px;
     }
     .panel__resultado {
         width: 90%; 
-        margin-bottom: 10vh;
+        margin-top: 2vh;
+        margin-bottom: 2vh;
     }   
     .panel__ingreso__acciones {
         display: flex;
@@ -247,6 +258,9 @@ footer {
     }
     .button__desencriptar {
         width: 100%;
+    }
+    .footer {
+        margin-top: 2vh;
     }
     .footer__contenido {
         width: 100vh;
